@@ -1,32 +1,21 @@
 <template>
   <div id="app">
-    <navbar
+    <router-view
       :cart="cart"
       :cartQty="cartQty"
       :cartTotal="cartTotal"
+      :maximum.sync="maximum"
+      :products="products"
+      :sliderStatus="sliderStatus"
       @toggle="toggleSliderStatus"
+      @add="addItem"
       @delete="deleteItem"
-    ></navbar>
-    <div class="container mt-5">
-      <h1>IdShop</h1>
-      <price-slider
-        :sliderStatus="sliderStatus"
-        :maximum.sync="maximum"
-      ></price-slider>
-      <product-list
-        :products="products"
-        :maximum="maximum"
-        @add="addItem"
-      ></product-list>
-    </div>
+    >
+    </router-view>
   </div>
 </template>
 
 <script>
-import ProductList from "./components/ProductList.vue";
-import PriceSlider from "./components/PriceSlider.vue";
-import Navbar from "./components/Navbar.vue";
-
 export default {
   name: "App",
   data() {
@@ -36,11 +25,6 @@ export default {
       cart: [],
       sliderStatus: false,
     };
-  },
-  components: {
-    ProductList,
-    PriceSlider,
-    Navbar,
   },
   mounted() {
     fetch("https://dummyjson.com/products?limit=10")
@@ -108,4 +92,8 @@ export default {
 };
 </script>
 <style>
+* {
+  padding: 0;
+  margin: 0;
+}
 </style>

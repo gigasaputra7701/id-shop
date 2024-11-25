@@ -1,7 +1,10 @@
 <template>
   <nav class="navbar navbar-light bg-light">
     <div class="navbar-text ml-auto d-flex align-items-center">
-      <button class="btn btn-sm btn-outline-success" @click="$emit('toggle')">
+      <button
+        class="btn btn-sm btn-outline-success"
+        @click="$emit('toggle-slide')"
+      >
         <font-awesome-icon icon="dollar-sign"></font-awesome-icon>
       </button>
       <div class="dropdown ml-2" v-if="cart.length > 0">
@@ -17,10 +20,10 @@
           {{ cartTotal | currencyFormat }}
         </button>
         <div
-          class="dropdown-menu dropdown-menu-right"
+          class="dropdown-menu dropdown-menu-right p-2"
           aria-labelledby="dropdownCart"
         >
-          <div v-for="(item, index) in groupedCart" :key="item.product.id">
+          <div v-for="item in groupedCart" :key="item.product.id">
             <div
               class="dropdown-item-text text-nowrap text-right d-flex justify-content-end align-items-center"
             >
@@ -43,11 +46,16 @@
               <a
                 href="#"
                 class="badge badge-danger text-white"
-                @click.stop="$emit('delete', item.product.id)"
+                @click.stop="$emit('delete-item', item.product.id)"
                 >-</a
               >
             </div>
           </div>
+          <router-link
+            class="btn btn-sm btn-outline-info text-info"
+            to="/checkout"
+            >Checkout</router-link
+          >
         </div>
       </div>
     </div>

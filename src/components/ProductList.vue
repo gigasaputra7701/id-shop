@@ -6,14 +6,16 @@
     @leave="leave"
   >
     <div
-      class="row d-none mb-3 align-items-center mt-4"
+      class="row mb-3 align-items-center mt-4"
       v-for="(item, index) in products"
       :key="item.id"
       :data-index="index"
     >
       <div class="row align-items-center" v-if="item.price <= Number(maximum)">
         <div class="col-1 m-auto">
-          <button class="btn btn-info" @click="$emit('add', item)">+</button>
+          <button class="btn btn-info" @click="$emit('add-item', item)">
+            +
+          </button>
         </div>
         <div class="col-sm-4">
           <img
